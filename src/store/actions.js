@@ -14,6 +14,9 @@ export default {
             title: obj[key].title,
             description: obj[key].description,
             qualifications: obj[key].qualifications,
+            ugMarksPercent: obj[key].ugMarksPercent,
+            twelfthMarksPercent: obj[key].twelfthMarksPercent,
+            tenthMarksPercent: obj[key].tenthMarksPercent,
             email: obj[key].email,
             date: obj[key].date,
             creatorId: obj[key].creatorId
