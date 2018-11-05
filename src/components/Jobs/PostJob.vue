@@ -31,6 +31,30 @@
               </p>
             </div>
             <div class="field">
+              <label class="label">Undergraduate Marks Percentage</label>
+              <p class="control">
+                <input class="input"
+                v-model="ugMarksPercent" 
+                required>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">12th std Marks Percentage</label>
+              <p class="control">
+                <input class="input"
+                v-model="twelfthMarksPercent" 
+                required>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">10th std Marks Percentage</label>
+              <p class="control">
+                <input class="input" 
+                v-model="tenthMarksPercent" 
+                required>
+              </p>
+            </div>
+            <div class="field">
               <label class="label">Send resumé to</label>
               <p class="control">
                 <input class="input" 
@@ -71,14 +95,41 @@ export default {
       title: '',
       description: '',
       qualifications: '',
+      ugMarksPercent: '',
+      twelfthMarksPercent: '',
+      tenthMarksPercent: '',
       email: ''
     }
   },
   computed: {
     emptyInputs () {
-      if (this.title.trim() === '' || this.email.trim() === '' || this.description.trim() === '' || this.qualifications.trim() === '') {
+      if (this.title.trim() === '' || this.email.trim() === '' || this.description.trim() === '' || this.qualifications.trim() === '' || this.tenthMarksPercent.trim() === '' || this.twelfthMarksPercent.trim() === '' || this.ugMarksPercent.trim() === '') {
         return true
       }
+    },
+    isValidUgPercent () {
+      if (this.ugMarksPercent >= 0 && this.ugMarksPercent <= 100) {
+        return true
+      }
+      return false
+    },
+    isValidTenthPercent () {
+      if (this.tenthMarksPercent >= 0 && this.tenthMarksPercent <= 100) {
+        return true
+      }
+      return false
+    },
+    isValidTwelfthPercent () {
+      if (this.twelfthMarksPercent >= 0 && this.twelfthMarksPercent <= 100) {
+        return true
+      }
+      return false
+    },
+    isValidPercent () {
+      if (this.isValidUgPercent() && this.isValidTenthPercent() && this.isValidTwelfthPercent()) {
+        return true
+      }
+      return false
     },
     loading () {
       return this.$store.getters.loading
@@ -90,6 +141,9 @@ export default {
         title: this.title,
         description: this.description,
         qualifications: this.qualifications,
+        ugMarksPercent: this.ugMarksPercent,
+        twelfthMarksPercent: this.twelfthMarksPercent,
+        tenthMarksPercent: this.tenthMarksPercent,
         email: this.email,
         date: new Date().getTime()
       }).then(

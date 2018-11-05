@@ -73,6 +73,9 @@ export default {
       title: payload.title,
       description: payload.description,
       qualifications: payload.qualifications,
+      ugMarksPercent: payload.ugMarksPercent,
+      twelfthMarksPercent: payload.twelfthMarksPercent,
+      tenthMarksPercent: payload.tenthMarksPercent,
       email: payload.email,
       date: payload.date,
       creatorId: getters.user.id
