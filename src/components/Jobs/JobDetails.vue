@@ -32,9 +32,9 @@
           </div>
           <div class="content">
             <h2>Marks Percentage Requirement</h2>
-            <p style="white-space: pre;">Undergraduate : {{ job.ugMarksPercent }}</p>
-            <p style="white-space: pre;">Twelfth Std : {{ job.twelfthMarksPercent }}</p>
-            <p style="white-space: pre;">Tenth Std : {{ job.tenthMarksPercent }}</p>
+            <p style="white-space: pre;">Undergraduate : <input class="input" readonly :value="job.ugMarksPercent +'%'"></p>
+            <p style="white-space: pre;">12th Std : <input class="input" readonly :value="job.twelfthMarksPercent +'%'"></p>
+            <p style="white-space: pre;">10th Std : <input class="input" readonly :value="job.tenthMarksPercent +'%'"></p>
           </div>
           <div class="content">
             <p>Please send Resume and references to <a :href=" 'mailto:' + job.email " class="link">{{ job.email }}</a></p>  
