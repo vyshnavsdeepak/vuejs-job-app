@@ -110,6 +110,16 @@ export default {
     if (payload.email) {
       updateObj.email = payload.email
     }
+    if (payload.ugMarksPercent) {
+      updateObj.ugMarksPercent = payload.ugMarksPercent
+    }
+    if (payload.twelfthMarksPercent) {
+      updateObj.twelfthMarksPercent = payload.twelfthMarksPercent
+    }
+    if (payload.tenthMarksPercent) {
+      updateObj.tenthMarksPercent = payload.tenthMarksPercent
+    }
+    console.log(updateObj)
     firebase.database().ref('jobs').child(payload.id).update(updateObj)
       .then(() => {
         commit('setLoading', false)

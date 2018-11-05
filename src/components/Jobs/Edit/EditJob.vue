@@ -42,6 +42,30 @@
                   </p>
                 </div>
                 <div class="field">
+              <label class="label">Undergraduate Marks Percentage</label>
+              <p class="control">
+                <input class="input"
+                v-model="editedUgMarksPercent" 
+                required>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">12th std Marks Percentage</label>
+              <p class="control">
+                <input class="input"
+                v-model="editedTwelfthMarksPercent" 
+                required>
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">10th std Marks Percentage</label>
+              <p class="control">
+                <input class="input" 
+                v-model="editedTenthMarksPercent" 
+                required>
+              </p>
+            </div>
+                <div class="field">
                   <label class="label">Send resumé to</label>
                   <p class="control">
                     <input class="input" 
@@ -85,12 +109,15 @@ export default {
       editedTitle: this.job.title,
       editedDescription: this.job.description,
       editedQualifications: this.job.qualifications,
+      editedUgMarksPercent: this.job.ugMarksPercent,
+      editedTwelfthMarksPercent: this.job.twelfthMarksPercent,
+      editedTenthMarksPercent: this.job.tenthMarksPercent,
       editedEmail: this.job.email
     }
   },
   computed: {
     emptyInputs () {
-      if (this.editedTitle.trim() === '' || this.editedEmail.trim() === '' || this.editedDescription.trim() === '' || this.editedEmail.trim() === '') {
+      if (this.editedTitle.trim() === '' || this.editedEmail.trim() === '' || this.editedDescription.trim() === '' || this.editedEmail.trim() === '' || this.editedTenthMarksPercent.trim() === '' || this.editedTwelfthMarksPercent.trim() === '' || this.editedUgMarksPercent.trim() === '') {
         return true
       }
     },
@@ -108,6 +135,9 @@ export default {
         title: this.editedTitle,
         description: this.editedDescription,
         qualifications: this.editedQualifications,
+        ugMarksPercent: this.editedUgMarksPercent,
+        twelfthMarksPercent: this.editedTwelfthMarksPercent,
+        tenthMarksPercent: this.editedTenthMarksPercent,
         email: this.editedEmail
       })
       this.showModal = false

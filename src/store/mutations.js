@@ -32,6 +32,15 @@ export default {
     if (payload.email) {
       job.email = payload.email
     }
+    if (payload.ugMarksPercent) {
+      job.ugMarksPercent = payload.ugMarksPercent
+    }
+    if (payload.twelfthMarksPercent) {
+      job.twelfthMarksPercent = payload.twelfthMarksPercent
+    }
+    if (payload.tenthMarksPercent) {
+      job.tenthMarksPercent = payload.tenthMarksPercent
+    }
   },
   setUser (state, payload) {
     state.user = payload
