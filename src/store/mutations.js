@@ -42,6 +42,17 @@ export default {
       job.tenthMarksPercent = payload.tenthMarksPercent
     }
   },
+  updateProfile (state, payload) {
+    if (payload.ugMarksPercent) {
+      state.user.ugMarksPercent = payload.ugMarksPercent
+    }
+    if (payload.twelfthMarksPercent) {
+      state.user.twelfthMarksPercent = payload.twelfthMarksPercent
+    }
+    if (payload.tenthMarksPercent) {
+      state.user.tenthMarksPercent = payload.tenthMarksPercent
+    }
+  },
   setUser (state, payload) {
     state.user = payload
     // if (payload.id) {

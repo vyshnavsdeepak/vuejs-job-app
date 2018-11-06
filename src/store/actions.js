@@ -130,6 +130,29 @@ export default {
         commit('setLoading', false)
       })
   },
+  editProfile ({commit}, payload) {
+    commit('setLoading', true)
+    const updateObj = {}
+    if (payload.ugMarksPercent) {
+      updateObj.ugMarksPercent = payload.ugMarksPercent
+    }
+    if (payload.twelfthMarksPercent) {
+      updateObj.twelfthMarksPercent = payload.twelfthMarksPercent
+    }
+    if (payload.tenthMarksPercent) {
+      updateObj.tenthMarksPercent = payload.tenthMarksPercent
+    }
+    console.log(updateObj)
+    firebase.database().ref('/users/' + payload.id).child('marks').update(updateObj)
+      .then(() => {
+        commit('setLoading', false)
+        commit('updateProfile', payload)
+      })
+      .catch((error) => {
+        console.log(error)
+        commit('setLoading', false)
+      })
+  },
   signUserUp ({commit}, payload) {
     commit('setLoading', true)
     commit('clearError')

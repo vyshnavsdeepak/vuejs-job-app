@@ -10,6 +10,7 @@ import { store } from './store'
 import Error from './components/Shared/Error'
 import Loader from './components/Shared/Loader'
 import EditJob from './components/Jobs/Edit/EditJob'
+import EditProfile from './components/User/Edit/EditProfile'
 import BookmarkJob from './components/Jobs/Bookmarks/BookmarkJob'
 
 Vue.config.productionTip = false
@@ -20,6 +21,7 @@ Vue.component('app-error', Error)
 Vue.component('app-loader', Loader)
 Vue.component('app-edit', EditJob)
 Vue.component('app-bookmark', BookmarkJob)
+Vue.component('app-edit-profile', EditProfile)
 
 /* eslint-disable no-new */
 new Vue({
