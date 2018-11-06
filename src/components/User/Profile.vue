@@ -5,9 +5,15 @@
       <div class="column is-half is-offset-one-quarter">
         <p class="subtitle has-text-centered">My Profile</p>
         <p><app-edit-profile :user="user"></app-edit-profile></p>
-        Undergraduate Marks Percentage : <input class="input" :value="user.ugMarksPercent">
-        12th Std Marks Percentage : <input class="input" :value="user.twelfthMarksPercent">
-        10th Std Marks Percentage : <input class="input" :value="user.tenthMarksPercent">
+        <div class="content" v-if="loading">
+          <app-loader :loading="loading"></app-loader>
+        </div>
+        <div v-else>
+          
+        Undergraduate Marks Percentage : <input class="input" readonly :value="user.ugMarksPercent">
+        12th Std Marks Percentage : <input class="input" readonly :value="user.twelfthMarksPercent">
+        10th Std Marks Percentage : <input class="input" readonly :value="user.tenthMarksPercent">
+        </div>
       </div>
     </div>  
     <div class="columns">
