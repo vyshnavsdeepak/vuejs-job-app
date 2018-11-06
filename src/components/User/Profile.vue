@@ -3,6 +3,14 @@
     <h2 class="title has-text-centered">Hello, JobApper</h2>
     <div class="columns">
       <div class="column is-half is-offset-one-quarter">
+        <p class="subtitle has-text-centered">My Profile</p>
+        Undergraduate Marks Percentage : <input class="input" :value="user.ugMarksPercent">
+        12th Std Marks Percentage : <input class="input" :value="user.twelfthMarksPercent">
+        10th Std Marks Percentage : <input class="input" :value="user.tenthMarksPercent">
+      </div>
+    </div>  
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
         <p class="subtitle has-text-centered" v-if="bookmarkedJobs.length > 0">My saved jobs:</p>
         <p class="subtitle has-text-centered" v-else>No jobs saved yet! <router-link to="/jobs">Search for jobs</router-link></p>
         <div class="content" v-if="loading">
@@ -59,8 +67,11 @@
 <script>
 export default {
   computed: {
+    user () {
+      return this.$store.getters.user
+    },
     bookmarkedJobs () {
-      return this.$store.getters.user.bookmarkedJobs
+      return this.user.bookmarkedJobs
     },
     loading () {
       return this.$store.getters.loading

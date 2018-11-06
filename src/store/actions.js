@@ -139,6 +139,11 @@ export default {
           commit('setLoading', false)
           const newUser = {
             id: user.uid,
+            tenthSchoolName: null,
+            tenthMarksPercent: null,
+            twelfthSchoolName: null,
+            twelfthMarksPercent: null,
+            ugMarksPercent: null,
             createdJobs: [],
             bookmarkedJobs: [],
             fbKeys: {}
@@ -160,6 +165,11 @@ export default {
         commit('setLoading', false)
         const newUser = {
           id: user.uid,
+          tenthSchoolName: null,
+          tenthMarksPercent: null,
+          twelfthSchoolName: null,
+          twelfthMarksPercent: null,
+          ugMarksPercent: null,
           createdJobs: [],
           bookmarkedJobs: [],
           fbKeys: {}
@@ -180,6 +190,11 @@ export default {
   autoSignIn ({commit}, payload) {
     commit('setUser', {
       id: payload.uid,
+      tenthSchoolName: null,
+      tenthMarksPercent: null,
+      twelfthSchoolName: null,
+      twelfthMarksPercent: null,
+      ugMarksPercent: null,
       createdJobs: [],
       bookmarkedJobs: [],
       fbKeys: {}
@@ -187,6 +202,15 @@ export default {
   },
   fetchUserData ({commit, getters}) {
     commit('setLoading', true)
+    var marks = {}
+    firebase.database().ref('/users/' + getters.user.id + '/marks').once('value')
+      .then(data => {
+        marks = data.val()
+      })
+      .catch(error => {
+        console.log(error)
+        commit('setLoading', false)
+      })
     firebase.database().ref('/users/' + getters.user.id + '/saved-jobs/').once('value')
       .then(data => {
         const dataPairs = data.val()
@@ -202,7 +226,18 @@ export default {
           fbKeys: swappedPairs
         }
         commit('setLoading', false)
-        commit('setUser', updatedUser)
+        commit('setUser', { ...updatedUser, ...marks })
+      })
+      .catch(error => {
+        console.log(error)
+        commit('setLoading', false)
+      })
+  },
+  fetchUserMarks ({commit, getters}) {
+    commit('setLoading', true)
+    firebase.database().ref('/users/' + getters.user.id + '/marks/').once('value')
+      .then(data => {
+        console.log(data)
       })
       .catch(error => {
         console.log(error)
