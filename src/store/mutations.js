@@ -43,6 +43,9 @@ export default {
     }
   },
   updateProfile (state, payload) {
+    if (payload.fullName) {
+      state.user.fullName = payload.fullName
+    }
     if (payload.ugMarksPercent) {
       state.user.ugMarksPercent = payload.ugMarksPercent
     }

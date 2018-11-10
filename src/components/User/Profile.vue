@@ -9,7 +9,7 @@
           <app-loader :loading="loading"></app-loader>
         </div>
         <div v-else>
-          
+        Name : <input class="input" readonly :value="user.fullName">
         Undergraduate Marks Percentage : <input class="input" readonly :value="user.ugMarksPercent">
         12th Std Marks Percentage : <input class="input" readonly :value="user.twelfthMarksPercent">
         10th Std Marks Percentage : <input class="input" readonly :value="user.tenthMarksPercent">

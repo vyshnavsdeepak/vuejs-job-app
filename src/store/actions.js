@@ -142,11 +142,23 @@ export default {
     if (payload.tenthMarksPercent) {
       updateObj.tenthMarksPercent = payload.tenthMarksPercent
     }
+    const updateProfileObj = {}
+    if (payload.fullName) {
+      updateProfileObj.fullName = payload.fullName
+    }
     console.log(updateObj)
     firebase.database().ref('/users/' + payload.id).child('marks').update(updateObj)
       .then(() => {
         commit('setLoading', false)
-        commit('updateProfile', payload)
+        firebase.database().ref('/users/' + payload.id).child('personal').update(updateProfileObj)
+          .then(() => {
+            commit('setLoading', false)
+            commit('updateProfile', payload)
+          })
+          .catch((error) => {
+            console.log(error)
+            commit('setLoading', false)
+          })
       })
       .catch((error) => {
         console.log(error)
@@ -162,6 +174,7 @@ export default {
           commit('setLoading', false)
           const newUser = {
             id: user.uid,
+            fullName: null,
             tenthSchoolName: null,
             tenthMarksPercent: null,
             twelfthSchoolName: null,
@@ -188,6 +201,7 @@ export default {
         commit('setLoading', false)
         const newUser = {
           id: user.uid,
+          fullName: null,
           tenthSchoolName: null,
           tenthMarksPercent: null,
           twelfthSchoolName: null,
@@ -213,6 +227,7 @@ export default {
   autoSignIn ({commit}, payload) {
     commit('setUser', {
       id: payload.uid,
+      fullName: null,
       tenthSchoolName: null,
       tenthMarksPercent: null,
       twelfthSchoolName: null,
@@ -234,6 +249,16 @@ export default {
         console.log(error)
         commit('setLoading', false)
       })
+    commit('setLoading', true)
+    var personal = {}
+    firebase.database().ref('/users/' + getters.user.id + '/personal').once('value')
+      .then(data => {
+        personal = data.val()
+      })
+      .catch(error => {
+        console.log(error)
+        commit('setLoading', false)
+      })
     firebase.database().ref('/users/' + getters.user.id + '/saved-jobs/').once('value')
       .then(data => {
         const dataPairs = data.val()
@@ -249,7 +274,7 @@ export default {
           fbKeys: swappedPairs
         }
         commit('setLoading', false)
-        commit('setUser', { ...updatedUser, ...marks })
+        commit('setUser', { ...updatedUser, ...marks, ...personal })
       })
       .catch(error => {
         console.log(error)

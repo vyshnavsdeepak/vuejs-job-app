@@ -16,6 +16,14 @@
           <section class="modal-card-body">
             <div class="content">
               <form id="form">
+              <div class="field">
+              <label class="label">Full Name</label>
+              <p class="control">
+                <input class="input"
+                v-model="editedFullName" 
+                required>
+              </p>
+             </div>
                 <div class="field">
               <label class="label">Undergraduate Marks Percentage</label>
               <p class="control">
@@ -48,7 +56,7 @@
                     class="button is-primary" 
                     :class="{ 'is\-loading': loading }" 
                     type="button"
-                    :disabled="!isValidPercent">
+                    :disabled="!isValidInput">
                       Save changes
                     </button>
                   </div>
@@ -73,12 +81,19 @@ export default {
   data () {
     return {
       showModal: false,
+      editedFullName: this.user.fullName,
       editedUgMarksPercent: this.user.ugMarksPercent,
       editedTwelfthMarksPercent: this.user.twelfthMarksPercent,
       editedTenthMarksPercent: this.user.tenthMarksPercent
     }
   },
   computed: {
+    isValidFullName () {
+      return (this.editedFullName.trim() !== '')
+    },
+    isValidPersonal () {
+      return this.isValidFullName
+    },
     isValidUgPercent () {
       if (this.editedUgMarksPercent >= 0 && this.editedUgMarksPercent <= 100) {
         return true
@@ -103,6 +118,9 @@ export default {
       }
       return false
     },
+    isValidInput () {
+      return (this.isValidPercent && this.isValidPersonal)
+    },
     loading () {
       return this.$store.getters.loading
     }
@@ -114,6 +132,7 @@ export default {
     saveEditProfile () {
       this.$store.dispatch('editProfile', {
         id: this.user.id,
+        fullName: this.editedFullName,
         ugMarksPercent: this.editedUgMarksPercent,
         twelfthMarksPercent: this.editedTwelfthMarksPercent,
         tenthMarksPercent: this.editedTenthMarksPercent
