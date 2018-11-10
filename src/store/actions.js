@@ -146,6 +146,9 @@ export default {
     if (payload.fullName) {
       updateProfileObj.fullName = payload.fullName
     }
+    if (payload.course) {
+      updateProfileObj.course = payload.course
+    }
     console.log(updateObj)
     firebase.database().ref('/users/' + payload.id).child('marks').update(updateObj)
       .then(() => {
@@ -175,6 +178,7 @@ export default {
           const newUser = {
             id: user.uid,
             fullName: null,
+            course: null,
             tenthSchoolName: null,
             tenthMarksPercent: null,
             twelfthSchoolName: null,
@@ -202,6 +206,7 @@ export default {
         const newUser = {
           id: user.uid,
           fullName: null,
+          course: null,
           tenthSchoolName: null,
           tenthMarksPercent: null,
           twelfthSchoolName: null,
@@ -228,6 +233,7 @@ export default {
     commit('setUser', {
       id: payload.uid,
       fullName: null,
+      course: null,
       tenthSchoolName: null,
       tenthMarksPercent: null,
       twelfthSchoolName: null,

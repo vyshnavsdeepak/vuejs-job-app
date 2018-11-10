@@ -24,6 +24,19 @@
                 required>
               </p>
              </div>
+
+            <div class="field">
+              <label class="label">Course</label>
+              <div class="select">
+              <select v-model="editedCourse">
+                <option>BCA</option>
+                <option>BSc CS</option>
+                <option>BSc IT</option>
+                <option>BSc CT</option>
+                <option>BSc Maths</option>
+              </select>
+              </div>
+            </div>
                 <div class="field">
               <label class="label">Undergraduate Marks Percentage</label>
               <p class="control">
@@ -82,6 +95,7 @@ export default {
     return {
       showModal: false,
       editedFullName: this.user.fullName,
+      editedCourse: this.user.course,
       editedUgMarksPercent: this.user.ugMarksPercent,
       editedTwelfthMarksPercent: this.user.twelfthMarksPercent,
       editedTenthMarksPercent: this.user.tenthMarksPercent
@@ -91,8 +105,11 @@ export default {
     isValidFullName () {
       return (this.editedFullName.trim() !== '')
     },
+    isValidCourse () {
+      return (this.editedCourse)
+    },
     isValidPersonal () {
-      return this.isValidFullName
+      return (this.isValidFullName && this.isValidCourse)
     },
     isValidUgPercent () {
       if (this.editedUgMarksPercent >= 0 && this.editedUgMarksPercent <= 100) {
@@ -133,6 +150,7 @@ export default {
       this.$store.dispatch('editProfile', {
         id: this.user.id,
         fullName: this.editedFullName,
+        course: this.editedCourse,
         ugMarksPercent: this.editedUgMarksPercent,
         twelfthMarksPercent: this.editedTwelfthMarksPercent,
         tenthMarksPercent: this.editedTenthMarksPercent

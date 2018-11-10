@@ -46,6 +46,9 @@ export default {
     if (payload.fullName) {
       state.user.fullName = payload.fullName
     }
+    if (payload.course) {
+      state.user.course = payload.course
+    }
     if (payload.ugMarksPercent) {
       state.user.ugMarksPercent = payload.ugMarksPercent
     }
