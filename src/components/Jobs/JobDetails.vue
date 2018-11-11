@@ -32,9 +32,9 @@
           </div>
           <div class="content">
             <h2>Marks Percentage Requirement</h2>
-            <p style="white-space: pre;">Undergraduate : <input class="input" v-bind:class="{ 'is-success': isEligibleUg, 'is-danger': !isEligibleUg }" readonly :value="job.ugMarksPercent +'%'"></p>
-            <p style="white-space: pre;">12th Std : <input class="input" v-bind:class="{ 'is-success': isEligibleTwelfth, 'is-danger': !isEligibleTwelfth }" readonly :value="job.twelfthMarksPercent +'%'"></p>
-            <p style="white-space: pre;">10th Std : <input class="input" v-bind:class="{ 'is-success': isEligibleTenth, 'is-danger': !isEligibleTenth }" readonly :value="job.tenthMarksPercent +'%'"></p>
+            <p style="white-space: pre;">Undergraduate : <input class="input" v-bind:class="[ isEligibleUg ? 'is-success' : 'is-danger']" readonly :value="job.ugMarksPercent +'%'"></p>
+            <p style="white-space: pre;">12th Std : <input class="input" v-bind:class="[isEligibleTwelfth ? 'is-success' : 'is-danger']" readonly :value="job.twelfthMarksPercent +'%'"></p>
+            <p style="white-space: pre;">10th Std : <input class="input" v-bind:class="[isEligibleTenth ? 'is-success' : 'is-danger']" readonly :value="job.tenthMarksPercent +'%'"></p>
           </div>
           <div class="content">
             <p>Please send Resume and references to <a :href=" 'mailto:' + job.email " class="link">{{ job.email }}</a></p>  
