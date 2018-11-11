@@ -32,9 +32,9 @@
           </div>
           <div class="content">
             <h2>Marks Percentage Requirement</h2>
-            <p style="white-space: pre;">Undergraduate : <input class="input" readonly :value="job.ugMarksPercent +'%'"></p>
-            <p style="white-space: pre;">12th Std : <input class="input" readonly :value="job.twelfthMarksPercent +'%'"></p>
-            <p style="white-space: pre;">10th Std : <input class="input" readonly :value="job.tenthMarksPercent +'%'"></p>
+            <p style="white-space: pre;">Undergraduate : <input class="input" v-bind:class="{ 'is-success': isEligibleUg, 'is-danger': !isEligibleUg }" readonly :value="job.ugMarksPercent +'%'"></p>
+            <p style="white-space: pre;">12th Std : <input class="input" v-bind:class="{ 'is-success': isEligibleTwelfth, 'is-danger': !isEligibleTwelfth }" readonly :value="job.twelfthMarksPercent +'%'"></p>
+            <p style="white-space: pre;">10th Std : <input class="input" v-bind:class="{ 'is-success': isEligibleTenth, 'is-danger': !isEligibleTenth }" readonly :value="job.tenthMarksPercent +'%'"></p>
           </div>
           <div class="content">
             <p>Please send Resume and references to <a :href=" 'mailto:' + job.email " class="link">{{ job.email }}</a></p>  
@@ -62,6 +62,18 @@ export default {
       if (!this.userLoggedIn) {
         return false
       } return this.$store.getters.user.id === this.job.creatorId
+    },
+    user () {
+      return this.$store.getters.user
+    },
+    isEligibleUg () {
+      return (this.job.ugMarksPercent <= this.user.ugMarksPercent)
+    },
+    isEligibleTenth () {
+      return (this.job.tenthMarksPercent <= this.user.tenthMarksPercent)
+    },
+    isEligibleTwelfth () {
+      return (this.job.twelfthMarksPercent <= this.user.twelfthMarksPercent)
     }
   }
 }
