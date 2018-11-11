@@ -146,6 +146,9 @@ export default {
     if (payload.fullName) {
       updateProfileObj.fullName = payload.fullName
     }
+    if (payload.rollNo) {
+      updateProfileObj.rollNo = payload.rollNo
+    }
     if (payload.course) {
       updateProfileObj.course = payload.course
     }
@@ -178,6 +181,7 @@ export default {
           const newUser = {
             id: user.uid,
             fullName: null,
+            rollNo: '',
             course: null,
             tenthSchoolName: null,
             tenthMarksPercent: null,
@@ -206,6 +210,7 @@ export default {
         const newUser = {
           id: user.uid,
           fullName: null,
+          rollNo: '',
           course: null,
           tenthSchoolName: null,
           tenthMarksPercent: null,
@@ -233,6 +238,7 @@ export default {
     commit('setUser', {
       id: payload.uid,
       fullName: null,
+      rollNo: '',
       course: null,
       tenthSchoolName: null,
       tenthMarksPercent: null,

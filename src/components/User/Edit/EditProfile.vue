@@ -24,6 +24,14 @@
                 required>
               </p>
              </div>
+             <div class="field">
+              <label class="label">Roll No.</label>
+              <p class="control">
+                <input class="input"
+                v-model="editedRollNo" 
+                required>
+              </p>
+             </div>
 
             <div class="field">
               <label class="label">Course</label>
@@ -95,6 +103,7 @@ export default {
     return {
       showModal: false,
       editedFullName: this.user.fullName,
+      editedRollNo: this.user.rollNo,
       editedCourse: this.user.course,
       editedUgMarksPercent: this.user.ugMarksPercent,
       editedTwelfthMarksPercent: this.user.twelfthMarksPercent,
@@ -108,8 +117,11 @@ export default {
     isValidCourse () {
       return (this.editedCourse)
     },
+    isValidRollNo () {
+      return (this.editedRollNo.trim() !== '')
+    },
     isValidPersonal () {
-      return (this.isValidFullName && this.isValidCourse)
+      return (this.isValidFullName && this.isValidRollNo && this.isValidCourse)
     },
     isValidUgPercent () {
       if (this.editedUgMarksPercent >= 0 && this.editedUgMarksPercent <= 100) {
@@ -150,6 +162,7 @@ export default {
       this.$store.dispatch('editProfile', {
         id: this.user.id,
         fullName: this.editedFullName,
+        rollNo: this.editedRollNo,
         course: this.editedCourse,
         ugMarksPercent: this.editedUgMarksPercent,
         twelfthMarksPercent: this.editedTwelfthMarksPercent,

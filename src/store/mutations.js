@@ -46,6 +46,9 @@ export default {
     if (payload.fullName) {
       state.user.fullName = payload.fullName
     }
+    if (payload.rollNo) {
+      state.user.rollNo = payload.rollNo
+    }
     if (payload.course) {
       state.user.course = payload.course
     }

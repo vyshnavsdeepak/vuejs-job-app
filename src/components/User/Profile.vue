@@ -4,12 +4,13 @@
     <div class="columns">
       <div class="column is-half is-offset-one-quarter">
         <p class="subtitle has-text-centered">My Profile</p>
-        <p><app-edit-profile :user="user" v-if="user"></app-edit-profile></p>
+        <p><app-edit-profile :user="user" v-if="user.fullName"></app-edit-profile></p>
         <div class="content" v-if="loading">
           <app-loader :loading="loading"></app-loader>
         </div>
-        <div v-else>
+        <div v-else-if="user">
         Name : <input class="input" readonly :value="user.fullName">
+        Roll No. : <input class="input" readonly :value="user.rollNo">
         Course : <input class="input" readonly :value="user.course">
         Undergraduate Marks Percentage : <input class="input" readonly :value="user.ugMarksPercent">
         12th Std Marks Percentage : <input class="input" readonly :value="user.twelfthMarksPercent">
