@@ -43,6 +43,15 @@
       </div>
     </section>
   </div>
+  <div class="container" v-else>
+    <section class="section">
+      <div class="columns">
+        <div class="column is-half is-offset-one-quarter">
+          Job not found
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
