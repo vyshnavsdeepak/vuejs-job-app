@@ -31,6 +31,19 @@
               </p>
             </div>
             <div class="field">
+              <label class="label">Degree</label>
+              <p>{{ courses }}</p>
+              <p class="select is-multiple">
+                <select v-model="courses" multiple size="5">
+                  <option>BCA</option>
+                  <option>BSc CS</option>
+                  <option>BSc IT</option>
+                  <option>BSc CT</option>
+                  <option>BSc Maths</option>
+                </select>
+              </p>
+            </div>
+            <div class="field">
               <label class="label">Undergraduate Marks Percentage</label>
               <p class="control">
                 <input class="input"
@@ -95,6 +108,7 @@ export default {
       title: '',
       description: '',
       qualifications: '',
+      courses: [],
       ugMarksPercent: '',
       twelfthMarksPercent: '',
       tenthMarksPercent: '',
@@ -103,7 +117,7 @@ export default {
   },
   computed: {
     emptyInputs () {
-      if (this.title.trim() === '' || this.email.trim() === '' || this.description.trim() === '' || this.qualifications.trim() === '' || this.tenthMarksPercent.trim() === '' || this.twelfthMarksPercent.trim() === '' || this.ugMarksPercent.trim() === '') {
+      if (this.title.trim() === '' || this.email.trim() === '' || this.description.trim() === '' || this.qualifications.trim() === '' || this.tenthMarksPercent.trim() === '' || this.twelfthMarksPercent.trim() === '' || this.ugMarksPercent.trim() === '' || this.courses === [] || !this.isValidPercent) {
         return true
       }
     },
@@ -126,7 +140,7 @@ export default {
       return false
     },
     isValidPercent () {
-      if (this.isValidUgPercent() && this.isValidTenthPercent() && this.isValidTwelfthPercent()) {
+      if (this.isValidUgPercent && this.isValidTenthPercent && this.isValidTwelfthPercent) {
         return true
       }
       return false
@@ -141,6 +155,7 @@ export default {
         title: this.title,
         description: this.description,
         qualifications: this.qualifications,
+        courses: this.courses,
         ugMarksPercent: this.ugMarksPercent,
         twelfthMarksPercent: this.twelfthMarksPercent,
         tenthMarksPercent: this.tenthMarksPercent,

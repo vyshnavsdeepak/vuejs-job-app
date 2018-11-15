@@ -76,6 +76,7 @@ export default {
       title: payload.title,
       description: payload.description,
       qualifications: payload.qualifications,
+      courses: payload.courses,
       ugMarksPercent: payload.ugMarksPercent,
       twelfthMarksPercent: payload.twelfthMarksPercent,
       tenthMarksPercent: payload.tenthMarksPercent,
@@ -259,9 +260,7 @@ export default {
       })
       .catch(error => {
         console.log(error)
-        commit('setLoading', false)
       })
-    commit('setLoading', true)
     var personal = {}
     firebase.database().ref('/users/' + getters.user.id + '/personal').once('value')
       .then(data => {
@@ -269,7 +268,6 @@ export default {
       })
       .catch(error => {
         console.log(error)
-        commit('setLoading', false)
       })
     firebase.database().ref('/users/' + getters.user.id + '/saved-jobs/').once('value')
       .then(data => {
@@ -285,8 +283,8 @@ export default {
           bookmarkedJobs: bookmarkedJobs,
           fbKeys: swappedPairs
         }
-        commit('setLoading', false)
         commit('setUser', { ...updatedUser, ...marks, ...personal })
+        commit('setLoading', false)
       })
       .catch(error => {
         console.log(error)
