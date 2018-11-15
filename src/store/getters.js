@@ -14,6 +14,16 @@ export default {
   user (state) {
     return state.user
   },
+  loadedUsers (state) {
+    return state.users
+  },
+  eligibleUsers (state) {
+    return (ugMarksPercent, twelfthMarksPercent, tenthMarksPercent) => {
+      return state.users.filter((user) => {
+        return user.ugMarksPercent >= ugMarksPercent && user.twelfthMarksPercent >= twelfthMarksPercent && user.tenthMarksPercent >= tenthMarksPercent
+      })
+    }
+  },
   loading (state) {
     return state.loading
   },

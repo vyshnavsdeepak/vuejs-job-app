@@ -86,6 +86,9 @@ export default {
     //   state.user.fbKeys = payload.fbKeys
     // }
   },
+  setUsers (state, payload) {
+    state.users = payload
+  },
   setLoading (state, payload) {
     state.loading = payload
   },

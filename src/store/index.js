@@ -10,6 +10,7 @@ export const store = new Vuex.Store({
   state: {
     loadedJobs: [],
     user: null,
+    users: null,
     loading: false,
     error: null
   },

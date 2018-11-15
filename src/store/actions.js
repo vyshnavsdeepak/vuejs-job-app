@@ -171,7 +171,7 @@ export default {
         commit('setLoading', false)
       })
   },
-  signUserUp ({commit}, payload) {
+  signUserUp ({commit, dispatch}, payload) {
     commit('setLoading', true)
     commit('clearError')
     firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
@@ -180,7 +180,7 @@ export default {
           commit('setLoading', false)
           const newUser = {
             id: user.uid,
-            fullName: null,
+            fullName: '',
             rollNo: '',
             course: null,
             tenthSchoolName: null,
@@ -209,7 +209,7 @@ export default {
         commit('setLoading', false)
         const newUser = {
           id: user.uid,
-          fullName: null,
+          fullName: '',
           rollNo: '',
           course: null,
           tenthSchoolName: null,
@@ -237,7 +237,7 @@ export default {
   autoSignIn ({commit}, payload) {
     commit('setUser', {
       id: payload.uid,
-      fullName: null,
+      fullName: '',
       rollNo: '',
       course: null,
       tenthSchoolName: null,
@@ -287,6 +287,32 @@ export default {
         }
         commit('setLoading', false)
         commit('setUser', { ...updatedUser, ...marks, ...personal })
+      })
+      .catch(error => {
+        console.log(error)
+        commit('setLoading', false)
+      })
+  },
+  fetchUsersData ({commit, getters}) {
+    commit('setLoading', true)
+    firebase.database().ref('/users/').once('value')
+      .then(data => {
+        const users = []
+        const obj = data.val()
+        for (let key in obj) {
+          if (obj[key].marks && obj[key].personal) {
+            users.push({
+              id: key,
+              fullName: obj[key].personal.fullName,
+              rollNo: obj[key].personal.rollNo,
+              course: obj[key].personal.course,
+              ugMarksPercent: obj[key].marks.ugMarksPercent,
+              twelfthMarksPercent: obj[key].marks.twelfthMarksPercent,
+              tenthMarksPercent: obj[key].marks.tenthMarksPercent
+            })
+          }
+        }
+        commit('setUsers', users)
       })
       .catch(error => {
         console.log(error)
