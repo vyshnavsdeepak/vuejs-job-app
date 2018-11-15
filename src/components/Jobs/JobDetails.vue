@@ -85,7 +85,7 @@
       </div>
     </section>
   </div>
-</template
+</template>
 <script>
 export default {
   props: ['id'],
