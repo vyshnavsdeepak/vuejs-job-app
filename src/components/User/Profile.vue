@@ -4,7 +4,7 @@
     <div class="columns">
       <div class="column is-half is-offset-one-quarter">
         <p class="subtitle has-text-centered">My Profile</p>
-        <p><app-edit-profile :user="user" v-if="user"></app-edit-profile></p>
+        <p><app-edit-profile :user="user" v-if="user.fullName"></app-edit-profile></p>
         <div class="content" v-if="loading">
           <app-loader :loading="loading"></app-loader>
         </div>
