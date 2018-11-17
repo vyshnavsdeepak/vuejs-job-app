@@ -100,7 +100,7 @@ export default {
       return this.$store.getters.loadedJob(this.id)
     },
     eligibleUsers () {
-      return this.$store.getters.eligibleUsers(this.job.ugMarksPercent, this.job.twelfthMarksPercent, this.job.tenthMarksPercent)
+      return this.$store.getters.eligibleUsers(this.job.courses, this.job.ugMarksPercent, this.job.twelfthMarksPercent, this.job.tenthMarksPercent)
     },
     loading () {
       return this.$store.getters.loading

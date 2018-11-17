@@ -18,9 +18,9 @@ export default {
     return state.users
   },
   eligibleUsers (state) {
-    return (ugMarksPercent, twelfthMarksPercent, tenthMarksPercent) => {
+    return (courses, ugMarksPercent, twelfthMarksPercent, tenthMarksPercent) => {
       return state.users.filter((user) => {
-        return user.ugMarksPercent >= ugMarksPercent && user.twelfthMarksPercent >= twelfthMarksPercent && user.tenthMarksPercent >= tenthMarksPercent
+        return courses.includes(user.course) && user.ugMarksPercent >= ugMarksPercent && user.twelfthMarksPercent >= twelfthMarksPercent && user.tenthMarksPercent >= tenthMarksPercent
       })
     }
   },
