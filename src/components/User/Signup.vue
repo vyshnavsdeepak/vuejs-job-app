@@ -8,6 +8,16 @@
         </div>
         <form @submit.prevent="onSignup" @change="onDismissed">
           <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input class="input" 
+              type="text" 
+              placeholder="John Doe"
+              v-model="fullName" 
+              required>
+            </div>
+          </div>
+          <div class="field">
             <label class="label">Email</label>
             <div class="control">
               <input class="input" 
@@ -69,6 +79,7 @@
 export default {
   data () {
     return {
+      fullName: '',
       email: '',
       password: '',
       confirmPassword: ''
@@ -81,7 +92,7 @@ export default {
       }
     },
     emptyInputs () {
-      if (this.email === '' || this.password === '' || this.confirmPassword === '') {
+      if (this.fullName === '' || this.email === '' || this.password === '' || this.confirmPassword === '') {
         return true
       }
     },
@@ -105,6 +116,7 @@ export default {
   methods: {
     onSignup () {
       this.$store.dispatch('signUserUp', {
+        fullName: this.fullName,
         email: this.email,
         password: this.password
       })
