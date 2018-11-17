@@ -32,6 +32,12 @@
               <p style="white-space: pre;">{{ job.qualifications }}</p>
             </div>
             <div class="content">
+              <h2>Eligible Courses</h2>
+              <ol>
+                <li v-for="course in job.courses">{{ course }}</li>
+              </ol>
+            </div>
+            <div class="content">
               <h2>Marks Percentage Requirement</h2>
               <p style="white-space: pre;">Undergraduate : <input class="input" v-bind:class="[ isEligibleUg ? 'is-success' : 'is-danger']" readonly :value="job.ugMarksPercent +'%'"></p>
               <p style="white-space: pre;">12th Std : <input class="input" v-bind:class="[isEligibleTwelfth ? 'is-success' : 'is-danger']" readonly :value="job.twelfthMarksPercent +'%'"></p>

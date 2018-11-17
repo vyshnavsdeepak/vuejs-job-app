@@ -14,6 +14,7 @@ export default {
             title: obj[key].title,
             description: obj[key].description,
             qualifications: obj[key].qualifications,
+            courses: obj[key].courses,
             ugMarksPercent: obj[key].ugMarksPercent,
             twelfthMarksPercent: obj[key].twelfthMarksPercent,
             tenthMarksPercent: obj[key].tenthMarksPercent,
