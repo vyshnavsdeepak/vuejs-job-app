@@ -179,10 +179,11 @@ export default {
     firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
       .then(
         user => {
+          console.log(user)
           commit('setLoading', false)
           const newUser = {
-            id: user.uid,
-            fullName: '',
+            id: user.user.uid,
+            fullName: payload.fullName,
             rollNo: '',
             course: null,
             tenthSchoolName: null,
@@ -195,6 +196,16 @@ export default {
             fbKeys: {}
           }
           commit('setUser', newUser)
+          const updateProfileObj = {
+            fullName: payload.fullName
+          }
+          firebase.database().ref('/users/' + newUser.id).child('personal').update(updateProfileObj)
+          .then(() => {
+            commit('updateProfile', newUser)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
         }
       )
       .catch(error => {
@@ -210,7 +221,7 @@ export default {
       .then(user => {
         commit('setLoading', false)
         const newUser = {
-          id: user.uid,
+          id: user.user.uid,
           fullName: '',
           rollNo: '',
           course: null,
