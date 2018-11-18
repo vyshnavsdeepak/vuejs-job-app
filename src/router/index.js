@@ -7,6 +7,7 @@ import PostJob from '@/components/Jobs/PostJob'
 import Profile from '@/components/User/Profile'
 import Signin from '@/components/User/Signin'
 import Signup from '@/components/User/Signup'
+import Users from '@/components/User/Users'
 import AuthGuard from './auth-guard'
 
 Vue.use(Router)
@@ -48,6 +49,12 @@ export default new Router({
       path: '/profile',
       name: 'Profile',
       component: Profile,
+      beforeEnter: AuthGuard
+    },
+    {
+      path: '/users',
+      name: 'Users',
+      component: Users,
       beforeEnter: AuthGuard
     },
     {

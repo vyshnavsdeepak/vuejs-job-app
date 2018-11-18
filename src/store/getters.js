@@ -27,6 +27,13 @@ export default {
       })
     }
   },
+  reqUsers (state) {
+    return (fullName, rollNo, courses, ugMarksPercent, twelfthMarksPercent, tenthMarksPercent) => {
+      return state.users.filter((user) => {
+        return user.fullName.toLowerCase().includes(fullName.toLowerCase()) && user.rollNo.toLowerCase().includes(rollNo.toLowerCase()) && (courses[0] === null ? true : courses.includes(user.course)) && user.ugMarksPercent >= ugMarksPercent && user.twelfthMarksPercent >= twelfthMarksPercent && user.tenthMarksPercent >= tenthMarksPercent
+      })
+    }
+  },
   loadedCourses (state) {
     return state.allCourses
   },
