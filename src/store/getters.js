@@ -14,6 +14,9 @@ export default {
   user (state) {
     return state.user
   },
+  adminStatus (state) {
+    return state.adminStatus
+  },
   loadedUsers (state) {
     return state.users
   },

@@ -92,6 +92,9 @@ export default {
     //   state.user.fbKeys = payload.fbKeys
     // }
   },
+  setAdmin (state, payload) {
+    state.adminStatus = payload
+  },
   setUsers (state, payload) {
     state.users = payload
   },

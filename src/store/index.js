@@ -11,6 +11,7 @@ export const store = new Vuex.Store({
     allCourses: [],
     loadedJobs: [],
     user: null,
+    adminStatus: false,
     users: null,
     loading: false,
     error: null

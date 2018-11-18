@@ -56,12 +56,18 @@ export default {
           {title: 'Post a job', path: '/post'},
           {title: 'Profile', path: '/profile'}
         ]
+        if (this.userIsAdmin) {
+          menuItems.push({title: 'Users', path: '/users'})
+        }
         return menuItems
       }
       return menuItems
     },
     userIsAuthenticated () {
       return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+    },
+    userIsAdmin () {
+      return this.$store.getters.adminStatus
     }
   },
   methods: {

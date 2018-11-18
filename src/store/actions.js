@@ -264,6 +264,7 @@ export default {
   },
   signUserOut ({commit}) {
     firebase.auth().signOut()
+    commit('setAdmin', false)
     commit('setUser', null)
   },
   autoSignIn ({commit}, payload) {
@@ -315,6 +316,9 @@ export default {
           fbKeys: swappedPairs
         }
         commit('setUser', { ...updatedUser, ...marks, ...personal })
+        if (personal.admin === true) {
+          commit('setAdmin', true)
+        }
         commit('setLoading', false)
       })
       .catch(error => {
