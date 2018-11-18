@@ -8,6 +8,7 @@ import Profile from '@/components/User/Profile'
 import Signin from '@/components/User/Signin'
 import Signup from '@/components/User/Signup'
 import Users from '@/components/Admin/Users'
+import Courses from '@/components/Admin/Courses'
 import AuthGuard from './auth-guard'
 
 Vue.use(Router)
@@ -55,6 +56,12 @@ export default new Router({
       path: '/users',
       name: 'Users',
       component: Users,
+      beforeEnter: AuthGuard
+    },
+    {
+      path: '/courses',
+      name: 'Courses',
+      component: Courses,
       beforeEnter: AuthGuard
     },
     {

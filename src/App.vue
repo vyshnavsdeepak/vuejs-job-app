@@ -58,6 +58,7 @@ export default {
         ]
         if (this.userIsAdmin) {
           menuItems.push({title: 'Users', path: '/users'})
+          menuItems.push({title: 'Courses', path: '/courses'})
         }
         return menuItems
       }

@@ -1,6 +1,18 @@
 import * as firebase from 'firebase'
 
 export default {
+  updateCourses ({commit}, payload) {
+    commit('setLoading', true)
+    firebase.database().ref('courses').set(payload)
+    .then(() => {
+      commit('setAllCourses', payload)
+      commit('setLoading', false)
+    })
+    .catch((error) => {
+      console.log(error)
+      commit('setLoading', false)
+    })
+  },
   loadCourses ({commit}) {
     commit('setLoading', true)
     firebase.database().ref('courses').once('value')
