@@ -37,11 +37,7 @@
               <label class="label">Course</label>
               <div class="select">
               <select v-model="editedCourse">
-                <option>BCA</option>
-                <option>BSc CS</option>
-                <option>BSc IT</option>
-                <option>BSc CT</option>
-                <option>BSc Maths</option>
+                <option v-for="(iCourse, i) in allCourses" :key="i">{{ iCourse }}</option>
               </select>
               </div>
             </div>
@@ -149,6 +145,9 @@ export default {
     },
     isValidInput () {
       return (this.isValidPercent && this.isValidPersonal)
+    },
+    allCourses () {
+      return this.$store.getters.loadedCourses
     },
     loading () {
       return this.$store.getters.loading
