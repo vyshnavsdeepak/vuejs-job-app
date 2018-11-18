@@ -7,7 +7,7 @@ import PostJob from '@/components/Jobs/PostJob'
 import Profile from '@/components/User/Profile'
 import Signin from '@/components/User/Signin'
 import Signup from '@/components/User/Signup'
-import Users from '@/components/User/Users'
+import Users from '@/components/Admin/Users'
 import AuthGuard from './auth-guard'
 
 Vue.use(Router)
