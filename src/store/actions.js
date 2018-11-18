@@ -43,11 +43,11 @@ export default {
     }
     firebase.database().ref('/users/' + user.id).child('/saved-jobs/').push(payload)
       .then(data => {
-        commit('setLoading', false)
         commit('saveBookmarkedJob', {
           ...bmJob,
           fbKey: data.key
         })
+        commit('setLoading', false)
       })
       .catch(
         (error) => {
@@ -64,8 +64,8 @@ export default {
       .ref('/users/' + user.id + '/saved-jobs/').child(payload.fbKey)
       .remove()
       .then(() => {
-        commit('setLoading', false)
         commit('unsaveBookmarkedJob', payload.id)
+        commit('setLoading', false)
       })
       .catch(error => {
         console.log(error)
@@ -85,6 +85,7 @@ export default {
       date: payload.date,
       creatorId: getters.user.id
     }
+    commit('setLoading', true)
     firebase.database().ref('jobs').push(job)
       .then(data => {
         const key = data.key
@@ -92,9 +93,11 @@ export default {
           ...job,
           id: key
         })
+        commit('setLoading', false)
       })
       .catch((error) => {
         console.log(error)
+        commit('setLoading', false)
       })
   },
   editJob ({commit}, payload) {
@@ -124,8 +127,8 @@ export default {
     console.log(updateObj)
     firebase.database().ref('jobs').child(payload.id).update(updateObj)
       .then(() => {
-        commit('setLoading', false)
         commit('updateJob', payload)
+        commit('setLoading', false)
       })
       .catch((error) => {
         console.log(error)
@@ -157,11 +160,10 @@ export default {
     console.log(updateObj)
     firebase.database().ref('/users/' + payload.id).child('marks').update(updateObj)
       .then(() => {
-        commit('setLoading', false)
         firebase.database().ref('/users/' + payload.id).child('personal').update(updateProfileObj)
           .then(() => {
-            commit('setLoading', false)
             commit('updateProfile', payload)
+            commit('setLoading', false)
           })
           .catch((error) => {
             console.log(error)
@@ -180,7 +182,6 @@ export default {
       .then(
         user => {
           console.log(user)
-          commit('setLoading', false)
           const newUser = {
             id: user.user.uid,
             fullName: payload.fullName,
@@ -202,9 +203,11 @@ export default {
           firebase.database().ref('/users/' + newUser.id).child('personal').update(updateProfileObj)
           .then(() => {
             commit('updateProfile', newUser)
+            commit('setLoading', false)
           })
           .catch((error) => {
             console.log(error)
+            commit('setLoading', false)
           })
         }
       )
@@ -219,7 +222,6 @@ export default {
     commit('clearError')
     firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then(user => {
-        commit('setLoading', false)
         const newUser = {
           id: user.user.uid,
           fullName: '',
@@ -236,11 +238,12 @@ export default {
         }
         console.log(newUser)
         commit('setUser', newUser)
+        commit('setLoading', false)
       })
       .catch(error => {
-        commit('setLoading', false)
         commit('setError', error)
         console.log(error)
+        commit('setLoading', false)
       })
   },
   signUserOut ({commit}) {
@@ -323,17 +326,7 @@ export default {
           }
         }
         commit('setUsers', users)
-      })
-      .catch(error => {
-        console.log(error)
         commit('setLoading', false)
-      })
-  },
-  fetchUserMarks ({commit, getters}) {
-    commit('setLoading', true)
-    firebase.database().ref('/users/' + getters.user.id + '/marks/').once('value')
-      .then(data => {
-        console.log(data)
       })
       .catch(error => {
         console.log(error)
