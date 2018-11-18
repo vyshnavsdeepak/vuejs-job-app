@@ -32,14 +32,9 @@
             </div>
             <div class="field">
               <label class="label">Degree</label>
-              <p>{{ courses }}</p>
               <p class="select is-multiple">
                 <select v-model="courses" multiple size="5">
-                  <option>BCA</option>
-                  <option>BSc CS</option>
-                  <option>BSc IT</option>
-                  <option>BSc CT</option>
-                  <option>BSc Maths</option>
+                  <option v-for="(iCourse, i) in allCourses" :key="i">{{ iCourse }}</option>>
                 </select>
               </p>
             </div>
@@ -144,6 +139,9 @@ export default {
         return true
       }
       return false
+    },
+    allCourses () {
+      return this.$store.getters.loadedCourses
     },
     loading () {
       return this.$store.getters.loading

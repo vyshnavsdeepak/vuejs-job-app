@@ -24,6 +24,9 @@ export default {
       })
     }
   },
+  loadedCourses (state) {
+    return state.allCourses
+  },
   loading (state) {
     return state.loading
   },
