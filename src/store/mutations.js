@@ -1,4 +1,7 @@
 export default {
+  setAllCourses (state, payload) {
+    state.allCourses = payload
+  },
   setLoadedJobs (state, payload) {
     state.loadedJobs = payload
   },

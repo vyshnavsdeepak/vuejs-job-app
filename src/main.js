@@ -37,6 +37,7 @@ new Vue({
         this.$store.dispatch('autoSignIn', user)
         this.$store.dispatch('fetchUserData')
         this.$store.dispatch('fetchUsersData')
+        this.$store.dispatch('loadCourses')
       }
     })
     this.$store.dispatch('loadJobs')
