@@ -125,6 +125,9 @@ export default {
     if (payload.qualifications) {
       updateObj.qualifications = payload.qualifications
     }
+    if (payload.courses) {
+      updateObj.courses = payload.courses
+    }
     if (payload.email) {
       updateObj.email = payload.email
     }

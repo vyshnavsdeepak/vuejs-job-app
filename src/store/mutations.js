@@ -32,6 +32,9 @@ export default {
     if (payload.qualifications) {
       job.qualifications = payload.qualifications
     }
+    if (payload.courses) {
+      job.courses = payload.courses
+    }
     if (payload.email) {
       job.email = payload.email
     }

@@ -42,6 +42,14 @@
                   </p>
                 </div>
                 <div class="field">
+              <label class="label">Degree</label>
+              <p class="select is-multiple">
+                <select v-model="editedCourses" multiple size="5">
+                  <option v-for="(iCourse, i) in allCourses" :key="i">{{ iCourse }}</option>>
+                </select>
+              </p>
+            </div>
+                <div class="field">
               <label class="label">Undergraduate Marks Percentage</label>
               <p class="control">
                 <input class="input"
@@ -109,6 +117,7 @@ export default {
       editedTitle: this.job.title,
       editedDescription: this.job.description,
       editedQualifications: this.job.qualifications,
+      editedCourses: this.job.courses,
       editedUgMarksPercent: this.job.ugMarksPercent,
       editedTwelfthMarksPercent: this.job.twelfthMarksPercent,
       editedTenthMarksPercent: this.job.tenthMarksPercent,
@@ -120,6 +129,9 @@ export default {
       if (this.editedTitle.trim() === '' || this.editedEmail.trim() === '' || this.editedDescription.trim() === '' || this.editedEmail.trim() === '' || this.editedTenthMarksPercent.trim() === '' || this.editedTwelfthMarksPercent.trim() === '' || this.editedUgMarksPercent.trim() === '') {
         return true
       }
+    },
+    allCourses () {
+      return this.$store.getters.loadedCourses
     },
     loading () {
       return this.$store.getters.loading
@@ -135,6 +147,7 @@ export default {
         title: this.editedTitle,
         description: this.editedDescription,
         qualifications: this.editedQualifications,
+        courses: this.editedCourses,
         ugMarksPercent: this.editedUgMarksPercent,
         twelfthMarksPercent: this.editedTwelfthMarksPercent,
         tenthMarksPercent: this.editedTenthMarksPercent,
