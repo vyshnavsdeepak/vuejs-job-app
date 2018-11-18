@@ -25,11 +25,11 @@
             <hr>
             <div class="content">
               <h2>Description</h2>
-              <p style="white-space: pre;">{{ job.description }}</p>
+              <p style="white-space: pre-line;">{{ job.description }}</p>
             </div>
             <div class="content">
               <h2>Qualifications</h2>
-              <p style="white-space: pre;">{{ job.qualifications }}</p>
+              <p style="white-space: pre-line;">{{ job.qualifications }}</p>
             </div>
             <div class="content">
               <h2>Eligible Courses</h2>
