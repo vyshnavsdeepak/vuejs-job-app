@@ -50,20 +50,20 @@
         <thead>
           <tr>
             <th>Sno.</th>
-            <th>Name</th>
-            <th><abbr title="Roll number">Roll No.</abbr></th>
-            <th><abbr title="Course">Dept.</abbr></th>
-            <th><abbr title="UG Marks Percentage">UG</abbr></th>
-            <th><abbr title="12th Std Marks Percentage">12th</abbr></th>
-            <th><abbr title="10th Std Marks Percentage">10th</abbr></th>
+            <th @click="sort('fullName')">Name</th>
+            <th @click="sort('rollNo')"><abbr title="Roll number">Roll No.</abbr></th>
+            <th @click="sort('course')"><abbr title="Course">Dept.</abbr></th>
+            <th @click="sort('ugMarksPercent')"><abbr title="UG Marks Percentage">UG</abbr></th>
+            <th @click="sort('twelfthMarksPercent')"><abbr title="12th Std Marks Percentage">12th</abbr></th>
+            <th @click="sort('tenthMarksPercent')"><abbr title="10th Std Marks Percentage">10th</abbr></th>
           </tr>
         </thead>
         <tbody>
           <tr
-            v-for="(user, i) in reqUsers"
+            v-for="(user, i) in sortedUsers"
             :key="user.id">
             <td>{{ i+1 }}</td>
-            <td>{{ user.fullName }}</td>
+            <td style="text-transform: capitalize">{{ user.fullName }}</td>
             <td>{{ user.rollNo.toUpperCase() }}</td>
             <td>{{ user.course }}</td>
             <td>{{ user.ugMarksPercent }}</td>
@@ -84,12 +84,31 @@ export default {
       reqRollNo: '',
       reqTenthMarksPercent: '',
       reqTwelfthMarksPercent: '',
-      reqUgMarksPercent: ''
+      reqUgMarksPercent: '',
+      currentSort: 'fullName',
+      currentSortDir: 'asc'
+    }
+  },
+  methods: {
+    sort (s) {
+      // if s == current sort, reverse
+      if (s === this.currentSort) {
+        this.currentSortDir = this.currentSortDir === 'asc' ? 'desc' : 'asc'
+      }
+      this.currentSort = s
     }
   },
   computed: {
+    sortedUsers () {
+      return this.reqUsers.sort((a, b) => {
+        let modifier = 1
+        if (this.currentSortDir === 'desc') modifier = -1
+        if (a[this.currentSort] < b[this.currentSort]) return -1 * modifier
+        if (a[this.currentSort] > b[this.currentSort]) return 1 * modifier
+        return 0
+      })
+    },
     reqUsers () {
-      // return this.$store.getters.eligibleUsers(this.job.courses, this.job.ugMarksPercent, this.job.twelfthMarksPercent, this.job.tenthMarksPercent)
       return this.$store.getters.reqUsers(this.reqFullName, this.reqRollNo, this.reqCourses, this.reqUgMarksPercent, this.reqTwelfthMarksPercent, this.reqTenthMarksPercent)
     },
     loading () {
