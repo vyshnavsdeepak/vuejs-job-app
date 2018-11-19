@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <h2 class="title has-text-centered">Welcome to JobApp</h2>
+    <h2 class="title has-text-centered">Welcome to Campus Placement System</h2>
     <div class="columns">
       <div class="column is-half is-offset-one-quarter">
         <p class="subtitle has-text-centered">Browse, post, and save jobs</p>

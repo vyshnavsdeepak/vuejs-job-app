@@ -4,7 +4,7 @@
       <nav class="nav has-shadow">
         <div class="container">
           <div class="nav-left">
-            <h1 class="nav-item">JobApp</h1>
+            <h1 class="nav-item">Campus Placement System</h1>
           </div>
           <span class="nav-toggle" @click="toggleNav">
             <span></span>

@@ -1,6 +1,6 @@
-[Demo](https://vue-jobapp.netlify.com)
+[Demo](https://vuejs-job.firebaseapp.com)
 
-# jobapp
+# Campus-Placement-System-aka-jobapp
 
 > A Vue.js project
 
