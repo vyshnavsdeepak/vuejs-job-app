@@ -70,27 +70,6 @@ export default {
   },
   setUser (state, payload) {
     state.user = payload
-    // if (payload.id) {
-    //   state.user.id = payload.id
-    // }
-    // if (payload.tenthSchoolName) {
-    //   state.user.tenthSchoolName = payload.tenthSchoolName
-    // }
-    // if (payload.tenthMarksPercent) {
-    //   state.user.tenthMarksPercent = payload.tenthMarksPercent
-    // }
-    // if (payload.twelfthSchoolName) {
-    //   state.user.twelfthSchoolName = payload.twelfthSchoolName
-    // }
-    // if (payload.ugMarksPercent) {
-    //   state.user.ugMarksPercent = payload.ugMarksPercent
-    // }
-    // if (payload.createJob) {
-    //   state.user.createJob = payload.createJob
-    // }
-    // if (state.fbKeys) {
-    //   state.user.fbKeys = payload.fbKeys
-    // }
   },
   setAdmin (state, payload) {
     state.adminStatus = payload
