@@ -33,11 +33,19 @@
             </div>
             <div class="content">
               <h2>Eligible Courses</h2>
+              <div class="notification is-danger" v-if="!isEligibleCourse">
+                <button class="delete"></button>
+                  Your course is not eligible
+              </div>
               <ol>
                 <li v-for="course in job.courses">{{ course }}</li>
               </ol>
             </div>
             <div class="content">
+              <div class="notification is-danger" v-if="!isEligibleUg || !isEligibleTwelfth || !isEligibleTwelfth">
+                <button class="delete"></button>
+                  You don't meet the marks requirement
+              </div>
               <h2>Marks Percentage Requirement</h2>
               <p style="white-space: pre;">Undergraduate : <input class="input" v-bind:class="[ isEligibleUg ? 'is-success' : 'is-danger']" readonly :value="job.ugMarksPercent +'%'"></p>
               <p style="white-space: pre;">12th Std : <input class="input" v-bind:class="[isEligibleTwelfth ? 'is-success' : 'is-danger']" readonly :value="job.twelfthMarksPercent +'%'"></p>
@@ -115,6 +123,9 @@ export default {
     },
     user () {
       return this.$store.getters.user
+    },
+    isEligibleCourse () {
+      return (this.job.courses.includes(this.user.course))
     },
     isEligibleUg () {
       return (this.job.ugMarksPercent <= this.user.ugMarksPercent)
