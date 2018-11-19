@@ -34,7 +34,6 @@
             <div class="content">
               <h2>Eligible Courses</h2>
               <div class="notification is-danger" v-if="!isEligibleCourse">
-                <button class="delete"></button>
                   Your course is not eligible
               </div>
               <ol>
@@ -43,7 +42,6 @@
             </div>
             <div class="content">
               <div class="notification is-danger" v-if="!isEligibleUg || !isEligibleTwelfth || !isEligibleTwelfth">
-                <button class="delete"></button>
                   You don't meet the marks requirement
               </div>
               <h2>Marks Percentage Requirement</h2>
